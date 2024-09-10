@@ -14,6 +14,20 @@ app.get("/random", (req, res) => {
     const randomIndex = Math.floor(Math.random() * posts.length);
     res.json(posts[randomIndex]);
   })
+
+app.get("/posts/:id", (req, res) => {
+const id = parseInt(req.params.id);
+const foundPost = posts.find((post) => post.id === id);
+
+if (foundPost) {
+    res.status(200).json(foundPost);  // If the joke is found, return it
+} else {
+    res.status(404).json({ message: "Post not found! :(" });  // If not found, return a 404
+}
+});
+
+
+  
   
 
 
